@@ -1,0 +1,29 @@
+CREATE TABLE ERS.employee (
+	id SERIAL NOT NULL,
+	password CHARACTER VARYING(100) NOT NULL,  -- abbrev VARCHAR
+	login CHARACTER VARYING(100) NOT NULL,-- 4 digits total, 2 after the decimal point
+	title CHARACTER VARYING(100) NOT NULL,
+	email CHARACTER VARYING(100) NOT NULL,
+	firstName CHARACTER VARYING(100) NOT NULL,
+	LastName CHARACTER VARYING(100) NOT NULL
+	
+);
+
+CREATE TABLE ERS.manager (
+	id SERIAL NOT NULL,
+	password CHARACTER VARYING(100) NOT NULL,  -- abbrev VARCHAR
+	login CHARACTER VARYING(100) NOT NULL,-- 4 digits total, 2 after the decimal point
+	title CHARACTER VARYING(100) NOT NULL,
+	email CHARACTER VARYING(100) NOT NULL,
+	firstName CHARACTER VARYING(100) NOT NULL,
+	LastName CHARACTER VARYING(100) NOT NULL
+	
+);
+
+CREATE TABLE ERS.reinbursmentRequest (
+	id SERIAL NOT NULL,
+	Id_employee_requester int  NOT NULL,
+	requestStatus CHARACTER VARYING(100) NOT NULL
+	
+	
+);
