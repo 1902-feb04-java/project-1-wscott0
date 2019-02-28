@@ -1,4 +1,4 @@
-CREATE TABLE ERS.employee (
+CREATE TABLE ers.employee (
 	id SERIAL NOT NULL,
 	password CHARACTER VARYING(100) NOT NULL,  -- abbrev VARCHAR
 	login CHARACTER VARYING(100) NOT NULL,-- 4 digits total, 2 after the decimal point
@@ -9,7 +9,7 @@ CREATE TABLE ERS.employee (
 	
 );
 
-CREATE TABLE ERS.manager (
+CREATE TABLE ers.manager (
 	id SERIAL NOT NULL,
 	password CHARACTER VARYING(100) NOT NULL,  -- abbrev VARCHAR
 	login CHARACTER VARYING(100) NOT NULL UNIQUE,-- 4 digits total, 2 after the decimal point
@@ -20,7 +20,7 @@ CREATE TABLE ERS.manager (
 	
 );
 
-CREATE TABLE ERS.reinbursmentRequest (
+CREATE TABLE ers.reinbursmentRequest (
 	reinburse_id SERIAL NOT NULL,
 	reinburse_amount NUMBER NOT NULL,
 	reinburse_Request TIMESTAMP,
@@ -30,7 +30,7 @@ CREATE TABLE ERS.reinbursmentRequest (
 	
 	
 );
-CREATE TABLE ERS.status  (
+CREATE TABLE ers.status  (
 	manager_Login_id  CHARACTER VARYING(100) NOT NULL UNIQUE,
 	manager_email CHARACTER VARYING(100) NOT NULL UNIQUE,
 	reinburse_status_id NUMBER NOT NULL,
