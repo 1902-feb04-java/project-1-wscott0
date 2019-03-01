@@ -6,36 +6,34 @@ CREATE TABLE ers.employee (
 	email CHARACTER VARYING(100) NOT NULL,
 	firstName CHARACTER VARYING(100) NOT NULL,
 	LastName CHARACTER VARYING(100) NOT NULL
+	CONSTRAINT pk_employees PRIMARY KEY  (id)
 	
 );
 
 CREATE TABLE ers.manager (
 	id SERIAL NOT NULL,
-	password CHARACTER VARYING(100) NOT NULL,  -- abbrev VARCHAR
-	login CHARACTER VARYING(100) NOT NULL UNIQUE,-- 4 digits total, 2 after the decimal point
+	password CHARACTER VARYING(100) NOT NULL,  
+	login CHARACTER VARYING(100) NOT NULL UNIQUE,
 	title CHARACTER VARYING(100) NOT NULL,
 	email CHARACTER VARYING(100) NOT NULL UNIQUE,
 	firstName CHARACTER VARYING(100) NOT NULL,
 	LastName CHARACTER VARYING(100) NOT NULL
+	CONSTRAINT pk_managers PRIMARY KEY  (id)
 	
 );
 
 CREATE TABLE ers.reinbursmentRequest (
 	reinburse_id SERIAL NOT NULL,
-	reinburse_amount NUMBER NOT NULL,
-	reinburse_Request TIMESTAMP,
-	reinburse_Complete TIMESTAMP,
 	Id_employee_requester int  NOT NULL,
-	requestStatus CHARACTER VARYING(100) NOT NULL
-	
-	
-);
-CREATE TABLE ers.status  (
-	manager_Login_id  CHARACTER VARYING(100) NOT NULL UNIQUE,
-	manager_email CHARACTER VARYING(100) NOT NULL UNIQUE,
-	reinburse_status_id NUMBER NOT NULL,
-	reinburse_status Character varying(100)
-
+	reinburse_amount INT NOT NULL,
+	reinburse_Request_Pending BOOLEAN Default true NOT NULL,
+	reinburse_Complete BOOLEAN DEFAULT false NOT NULL,
+	reinbure_Approved BOOLEAN NULL,
+	Completed_By int null,
+	recipt bytea null,
+	CONSTRAINT pk_reimbursement_id PRIMARY KEY  (reinburse_id),
+	CONSTRAINT fk_employee_id FOREIGN KEY  (Id_employee_requester) REFERENCES employee(id),
+	CONSTRAINT fk_manager_id FOREIGN KEY  (Completed_By) REFERENCES manager(id)
 	
 	
 );
