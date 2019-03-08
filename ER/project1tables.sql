@@ -1,3 +1,5 @@
+SET search_path TO ers, public;
+
 CREATE TABLE ers.employee (
 	id SERIAL NOT NULL,
 	password CHARACTER VARYING(100) NOT NULL,  -- abbrev VARCHAR
@@ -26,9 +28,9 @@ CREATE TABLE ers.reinbursmentRequest (
 	reinburse_id SERIAL NOT NULL,
 	Id_employee_requester int  NOT NULL,
 	reinburse_amount INT NOT NULL,
-	reinburse_Request_Pending BOOLEAN Default true NOT NULL,
-	reinburse_Complete BOOLEAN DEFAULT false NOT NULL,
-	reinbure_Approved BOOLEAN NULL,
+	reinburse_Request_Pending BOOLEAN Default true,
+	reinburse_Complete BOOLEAN DEFAULT false,
+	reinbure_Approved BOOLEAN Default false,
 	Completed_By int null,
 	recipt bytea null,
 	CONSTRAINT pk_reimbursement_id PRIMARY KEY  (reinburse_id),
