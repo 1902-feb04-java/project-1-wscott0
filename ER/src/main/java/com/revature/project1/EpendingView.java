@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class EpendingView
@@ -28,8 +29,9 @@ public class EpendingView extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		int id = Integer.parseInt(request.getParameter("employeeID"));
-
+		HttpSession session = request.getSession();
+		Integer id = (Integer) session.getAttribute("id");
+		
 		PrintWriter out = response.getWriter();
 		
 		String url = "jdbc:postgresql://localhost:5432/postgres";
@@ -55,7 +57,7 @@ public class EpendingView extends HttpServlet {
 				}
 			}
 			rs.close();
-			out.println("<a href='http://localhost:8080/ER/new.html'><button>Return to manager Page</button></a>");
+			out.println("<a href='http://localhost:8080/ER/employee.html'><button>Return to Employee Page</button></a>");
 		
 	}catch (Exception e) {
 		// TODO: handle exception

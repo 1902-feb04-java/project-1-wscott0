@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -15,10 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ManagerApprove
+ * Servlet implementation class EcreateReb
  */
-public class ManagerApprove extends HttpServlet {
-
+public class EcreateReb extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,35 +31,32 @@ public class ManagerApprove extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		Integer id = (Integer) session.getAttribute("id");
-		int Eid = Integer.parseInt(request.getParameter("employeeID"));
-		int Rid = Integer.parseInt(request.getParameter("ReinbursementID"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
 		PrintWriter out = response.getWriter();
 		
 		
 		String url = "jdbc:postgresql://localhost:5432/postgres";
 		String username = "postgres";
 		String pass = "password";
-		try(Connection connection = DriverManager.getConnection(url, username, pass);
-		
+		try(Connection connection = DriverManager.getConnection(url, username, pass)){
+			Statement statement = connection.createStatement();
 				
-				PreparedStatement preparedStatement = connection
-						.prepareStatement("UPDATE ers.reinbursmentRequest set reinburse_Request_Pending =?, reinburse_Complete =?, reinbure_Approved=?, Completed_By=?  where Id_employee_requester=? AND reinburse_id=?  ");) {
-
-			preparedStatement.setBoolean(1,false);
-			preparedStatement.setBoolean(2, true);
-			preparedStatement.setBoolean(3, true);
-			preparedStatement.setInt(4, id);
-			preparedStatement.setInt(5, Eid);
-			preparedStatement.setInt(6, Rid);
-			preparedStatement.executeUpdate();
+				String sql = "INSERT INTO ers.reinbursmentRequest(Id_employee_requester,reinburse_amount ) " +
+	                    "VALUES ( "+id+","+amount+")";
+				
+				statement.executeUpdate(sql);
+				
 			 
-			out.println("<p> updated Reinburments! to Approved! </p> ");
-			out.println("<a href='http://localhost:8080/ER/new.html'><button>Return to manager Page</button></a>");
+			out.println("<p> Created a new Reinburments!  </p> ");
+			out.println("<a href='http://localhost:8080/ER/employee.html'><button>Return to Employee Page</button></a>");
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-
+			
+		
+		
+	
 	
 	}
 

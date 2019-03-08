@@ -105,4 +105,44 @@
     <url-pattern>/EpendingView</url-pattern>
     <url-pattern>/EPV</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmpResolved</display-name>
+    <servlet-name>EmpResolved</servlet-name>
+    <servlet-class>com.revature.project1.EmpResolved</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmpResolved</servlet-name>
+    <url-pattern>/EmpResolved</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Epersonalinfo</display-name>
+    <servlet-name>Epersonalinfo</servlet-name>
+    <servlet-class>com.revature.project1.Epersonalinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Epersonalinfo</servlet-name>
+    <url-pattern>/Epersonalinfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EeditInfor</display-name>
+    <servlet-name>EeditInfor</servlet-name>
+    <servlet-class>com.revature.project1.EeditInfor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EeditInfor</servlet-name>
+    <url-pattern>/EeditInfor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EcreateReb</display-name>
+    <servlet-name>EcreateReb</servlet-name>
+    <servlet-class>com.revature.project1.EcreateReb</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EcreateReb</servlet-name>
+    <url-pattern>/EcreateReb</url-pattern>
+  </servlet-mapping>
 </web-app>

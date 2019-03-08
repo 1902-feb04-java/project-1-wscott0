@@ -11,12 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Mresolved
+ * Servlet implementation class EmpResolved
  */
-public class Mresolved extends HttpServlet {
-	
+public class EmpResolved extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,13 +28,9 @@ public class Mresolved extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-//		HttpSession session = request.getSession();
-////		String user = (String) session.getAttribute("user");
-//		String user = request.getParameter("user");
-//		String password = request.getParameter("password");
-//		session.setAttribute("user", user);
-//		session.setAttribute("password", password);
+		HttpSession session = request.getSession();
+		Integer id = (Integer) session.getAttribute("id");
+		
 		PrintWriter out = response.getWriter();
 		
 		String url = "jdbc:postgresql://localhost:5432/postgres";
@@ -48,7 +44,7 @@ public class Mresolved extends HttpServlet {
 
 			ResultSet rs = statement.executeQuery("select * from ers.reinbursmentRequest");
 			while (rs.next()) {
-				if(rs.getBoolean("reinburse_Complete") == true) {
+				if(rs.getInt("Id_employee_requester") == id && rs.getBoolean("reinburse_Complete") != false) {
 				out.print(("<p>Reinbursment ID: ")+(rs.getString( "reinburse_id")+ "</p>"));
 				out.println(("<p>Reinbursment Employee ID: ")+(rs.getString( "Id_employee_requester")+ "</p>"));
 				out.println(("<p>Reinbursment Amount $: ")+(rs.getString( "reinburse_amount")+ "</p>"));
@@ -60,12 +56,15 @@ public class Mresolved extends HttpServlet {
 				}
 			}
 			rs.close();
-			out.println("<a href='http://localhost:8080/ER/new.html'><button>Return to manager Page</button></a>");
+			out.println("<a href='http://localhost:8080/ER/employee.html'><button>Return to Employee Page</button></a>");
 		
 	}catch (Exception e) {
 		// TODO: handle exception
 		e.printStackTrace();
 	}
+	
+	
+	
 	}
 
 	/**

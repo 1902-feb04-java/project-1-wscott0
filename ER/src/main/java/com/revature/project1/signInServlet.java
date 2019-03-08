@@ -64,7 +64,8 @@ public class signInServlet extends HttpServlet {
 
 
            if (user.equals(rs.getString("login")) && password.equals(rs.getString("password"))) {
-			request.getRequestDispatcher("employee.html").forward(request, response);
+        	   session.setAttribute("id", rs.getInt("id"));
+        	   request.getRequestDispatcher("employee.html").forward(request, response);
 
 		}
             } 
@@ -82,6 +83,7 @@ public class signInServlet extends HttpServlet {
 //               System.out.println(rs.getString("lastname"));
                
 		if (user.equals(rs.getString("login")) && password.equals(rs.getString("password"))) {
+			session.setAttribute("id", rs.getInt("id"));
 			request.getRequestDispatcher("new.html").forward(request, response);
 			
 		}}
@@ -90,7 +92,7 @@ public class signInServlet extends HttpServlet {
 //			out.println("<h1>Hello there, " + user + "</h1>");
 //			out.println("<a href='logout'>Logout</a>");
 			out.println("<h1> That ain't it chief, Try again</h1>");
-			out.println("<a href='http://localhost:8080/ER/'>Return to signIn Page</a>");
+			out.println("<a href='http://localhost:8080/ER/'><button>Return to signIn Page</button></a>");
 			out.close();
 		
              
